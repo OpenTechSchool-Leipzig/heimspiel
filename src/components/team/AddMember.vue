@@ -4,17 +4,22 @@
     <div class="control">
       <input class="input" type="text" v-model="name" />
     </div>
-    <label class="label">Eigenschaften</label>
-    <span
-      v-for="(tag, index) in tags"
-      :key="index"
-      :class="['tag', 'is-medium', isSelected(tag) ? 'is-primary' : '']"
-      @click="addAttribute(tag)"
-    >
-      {{ tag }}
-    </span>
+    <br />
+    <label class="label">Welche Eigenschaften hat {{ name }}?</label>
+    <div class="tags">
+      <span
+        v-for="(tag, index) in tags"
+        :key="index"
+        :class="['tag', 'is-medium', isSelected(tag) ? 'is-primary' : '']"
+        @click="addAttribute(tag)"
+      >
+        {{ tag }}
+      </span>
+    </div>
     <div class="control">
-      <button class="button is-small" @click="add">Hinzufügen</button>
+      <button class="button is-info is-light is-small" @click="add">
+        Weitere Mitglieder hinzufügen
+      </button>
     </div>
   </div>
 </template>
@@ -62,3 +67,9 @@ export default class AddMember extends Vue {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.tag {
+  cursor: pointer;
+}
+</style>

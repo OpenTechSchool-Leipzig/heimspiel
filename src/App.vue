@@ -3,7 +3,7 @@
     <router-view />
     <footer class="footer">
       <div class="content has-text-centered">
-        <p><strong>Heimspiel</strong> built for #WirVsVirus</p>
+        <p><strong>Heimspiel</strong> was built for #WirVsVirus</p>
       </div>
       <div id="nav">
         <router-link to="/">Home</router-link> |

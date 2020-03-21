@@ -30,12 +30,17 @@ export type Quest = {
   imageURL: string | null;
 };
 
+export type QuestFilter = {
+  category: number | null;
+  searchString: string;
+};
+
 export type Member = {
   name: string;
   attributes: string[];
 };
 
-export type QuestFilter = {
-  category: number | null;
-  searchString: string;
+export type Team = {
+  name: string;
+  members: Member[]
 };
