@@ -37,7 +37,7 @@
                     <span
                       v-for="(tag, index) in member.attributes"
                       :key="index"
-                      class="tag pointer is-small"
+                      class="tag is-small"
                       >{{ tag }}</span
                     >
                   </div>
@@ -70,9 +70,3 @@ export default class AddTeam extends Vue {
   teamName = "";
 }
 </script>
-
-<style lang="scss">
-.tag.pointer {
-  cursor: pointer;
-}
-</style>

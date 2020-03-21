@@ -10,7 +10,7 @@
           </h2>
           <p class="has-text-left">
             Und so geht's! Gemeinsam mit deinem Team sammelst du Punkte indem
-            ihr gemeinsam den Alltag bewältigt. Jedes Team Mitglieder hat dabei
+            ihr gemeinsam den Alltag bewältigt. Jedes Teammitglieder hat dabei
             unterschiedliche Fähigkeiten die es bei der Erfüllung der Quests
             (Aufgaben) einsetzen kann. Am Ende des Tages bekommt ihr eine
             Belohnung für euer Ergebnis.
