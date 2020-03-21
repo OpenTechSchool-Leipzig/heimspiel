@@ -19,7 +19,9 @@ export default new Vuex.Store({
       state.selectedQuests = [...state.selectedQuests, quest];
     },
     removeSelectedQuest(state, questId: number) {
-      state.selectedQuests.filter(sq => sq.id != questId);
+      state.selectedQuests = state.selectedQuests.filter(
+        sq => sq.id != questId
+      );
     }
   },
   actions: {},
