@@ -6,15 +6,14 @@
         Spielregeln
       </h2>
       <p></p>
-      <button class="button is-info is-large">Jetzt mitspielen!</button>
+      <router-link to="/add-team" class="button is-info is-large"
+        >Jetzt mitspielen!</router-link
+      >
     </div>
   </section>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-
 export default {
   name: 'Home',
   components: {}
