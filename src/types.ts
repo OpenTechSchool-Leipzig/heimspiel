@@ -7,3 +7,8 @@ export type Quest = {
   score: number;
   imageURL: string | null;
 };
+
+export type Member = {
+  name: string;
+  attributes: string[];
+}

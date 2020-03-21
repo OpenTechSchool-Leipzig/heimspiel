@@ -20,26 +20,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
-interface Member {
-  name: string;
-  attributes: array;
-}
+import { Component, Vue } from "vue-property-decorator";
+import { Member } from "@/types";
 
 @Component
 export default class AddMember extends Vue {
-  name = '';
-  attributes: Array[] = [];
+  name = "";
+  attributes: string[] = [];
   teamMembers: Member[] = [];
-  tags: Array = [
-    'Sportskanone',
-    'Witzbold',
-    'Ruhepol',
-    'Braucht Ruhe',
-    'Muss arbeiten',
-    'Kocht gerne',
-    'Treibt viel Sport'
+  tags: string[] = [
+    "Sportskanone",
+    "Witzbold",
+    "Ruhepol",
+    "Braucht Ruhe",
+    "Muss arbeiten",
+    "Kocht gerne",
+    "Treibt viel Sport"
   ];
 
   addAttribute(attribute: string) {
@@ -50,18 +46,18 @@ export default class AddMember extends Vue {
   }
 
   add() {
-    if (this.name === '') return;
+    if (this.name === "") return;
     const member: Member = {
       name: this.name,
       attributes: this.attributes
     };
     this.teamMembers.push(member);
-    this.name = '';
+    this.name = "";
     this.attributes = [];
-    this.$emit('input', this.teamMembers);
+    this.$emit("input", this.teamMembers);
   }
 
-  isSelected(tag) {
+  isSelected(tag: string) {
     return this.attributes.includes(tag);
   }
 }

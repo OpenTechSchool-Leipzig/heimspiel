@@ -36,11 +36,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import AddMember from '@/components/team/AddMember.vue';
+import { Component, Vue } from "vue-property-decorator";
+import AddMember from "@/components/team/AddMember.vue";
+import { Member } from "@/types";
 
 @Component({ components: { AddMember } })
 export default class AddTeam extends Vue {
-  teamMembers: Array = [];
+  teamMembers: Member[] = [];
 }
 </script>
