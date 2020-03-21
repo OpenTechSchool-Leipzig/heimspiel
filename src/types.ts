@@ -9,6 +9,11 @@ export enum Categories {
 
 export type CategorieTitles = keyof typeof Categories;
 
+export type CatItem = {
+  name: string;
+  id: number;
+};
+
 export type QuestCategory = {
   id: number;
   title: CategorieTitles;
@@ -18,7 +23,7 @@ export type QuestCategory = {
 export type Quest = {
   id: number;
   title: string;
-  category: number; // hier kommt der category type rein!
+  category: QuestCategory;
   text: string;
   flavorText: string;
   score: number;

@@ -23,27 +23,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import { QuestFilter, Categories } from "../../types";
-
-type catItem = {
-  name: string;
-  id: number;
-};
-
-function getCatArray(): Array<catItem> {
-  const list: Array<catItem> = [];
-  let id = 1;
-  for (const e in Categories) {
-    if (isNaN(Number(e))) {
-      list.push({
-        name: e,
-        id: id
-      });
-      id++;
-    }
-  }
-  return list;
-}
+import { QuestFilter, CatItem } from "../../types";
+import { getCatArray } from "@/utility/categories";
 
 @Component
 export default class FilterBar extends Vue {
@@ -51,7 +32,7 @@ export default class FilterBar extends Vue {
   @Prop({
     default: getCatArray
   })
-  private cats!: Array<catItem>;
+  private cats!: Array<CatItem>;
 
   @Watch("value")
   valChanged(newVal: QuestFilter) {

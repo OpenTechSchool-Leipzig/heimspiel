@@ -34,7 +34,10 @@ export default class QuestList extends Vue {
     {
       id: 0,
       title: "Müll rausbringen",
-      category: 4,
+      category: {
+        title: "Haushalt",
+        id: 4
+      },
       text:
         "Das übelrichende Müllmonster hat wieder zugeschlagen, bringe es schnell raus, bevor es schlimemr wird.. oder anfängt wegzulaufen!",
       flavorText: "sorgt dafür, dass die Wohnung sauber bleibt.",
@@ -44,7 +47,10 @@ export default class QuestList extends Vue {
     {
       id: 1,
       title: "Home Office",
-      category: 3,
+      category: {
+        title: "Produktivität",
+        id: 3
+      },
       text:
         "Das tägliche Übel des Broterwerbs... na hoffentlich machts auch Spaß!",
       flavorText: "",
@@ -70,7 +76,7 @@ export default class QuestList extends Vue {
       return this.openQuests.filter(
         q =>
           q.text.toLowerCase().match(this.filter.searchString.toLowerCase()) &&
-          (!this.filter.category || q.category === this.filter.category)
+          (!this.filter.category || q.category.id === this.filter.category)
       );
     }
     return [];
