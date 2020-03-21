@@ -1,4 +1,4 @@
-import { Quest } from "./../types";
+import { Quest, Team } from "./../types";
 import Vue from "vue";
 import Vuex, { Store } from "vuex";
 import { State, Getter, Action, Mutation, namespace } from "vuex-class";
@@ -7,12 +7,14 @@ Vue.use(Vuex);
 interface StateInterface {
   adventureGroupId: number | null;
   selectedQuests: Array<Quest>;
+  team: Team | null;
 }
 
 export default new Vuex.Store({
   state: {
     adventureGroupId: null,
-    selectedQuests: []
+    selectedQuests: [],
+    team: null
   } as StateInterface,
   mutations: {
     addSelectedQuest(state, quest: Quest) {
@@ -22,6 +24,9 @@ export default new Vuex.Store({
       state.selectedQuests = state.selectedQuests.filter(
         sq => sq.id != questId
       );
+    },
+    addTeam(state, team: Team) {
+      state.team = team
     }
   },
   actions: {},

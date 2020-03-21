@@ -48,7 +48,11 @@
             <br />
 
             <div class="control has-text-centered">
-              <button class="button is-info is-medium" disabled>
+              <button
+                class="button is-info is-medium"
+                :disabled="disabled"
+                @click="add"
+              >
                 Fertig!
               </button>
             </div>
@@ -62,11 +66,23 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import AddMember from "@/components/team/AddMember.vue";
-import { Member } from "@/types";
+import { Member, Team } from "@/types";
+import { Mutation } from "vuex-class";
 
 @Component({ components: { AddMember } })
 export default class AddTeam extends Vue {
+  @Mutation public addTeam!: (team: Team) => void;
+
   teamMembers: Member[] = [];
   teamName = "";
+
+  get disabled() {
+    return this.teamName.trim() === "" || this.teamMembers.length < 1;
+  }
+
+  add() {
+    this.addTeam({ name: this.teamName, members: this.teamMembers });
+    this.$router.push("/quests");
+  }
 }
 </script>
