@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import CategoryTile from "@/components/icons/CategoryTile.vue";
+import CategoryTile from "@/components/icons/CategoryTile2.vue";
 import { getCatArray } from "../../utility/categories";
 import { CatItem, TilePosition } from "../../types";
 
