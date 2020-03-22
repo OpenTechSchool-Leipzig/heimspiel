@@ -49,7 +49,12 @@
 
             <div class="control has-text-centered">
               <button
-                class="button is-info is-medium"
+                :class="[
+                  'button',
+                  'is-info',
+                  'is-medium',
+                  isLoading ? 'is-loading' : ''
+                ]"
                 :disabled="disabled"
                 @click="add"
               >
@@ -67,22 +72,29 @@
 import { Component, Vue } from "vue-property-decorator";
 import AddMember from "@/components/team/AddMember.vue";
 import { Member, Team } from "@/types";
-import { Mutation } from "vuex-class";
+import { Action } from "vuex-class";
 
 @Component({ components: { AddMember } })
 export default class AddTeam extends Vue {
-  @Mutation public addTeam!: (team: Team) => void;
+  @Action public createTeam!: (team: Team) => void;
 
   teamMembers: Member[] = [];
   teamName = "";
+  isLoading = false;
 
   get disabled() {
     return this.teamName.trim() === "" || this.teamMembers.length < 1;
   }
 
-  add() {
-    this.addTeam({ name: this.teamName, members: this.teamMembers });
-    this.$router.push("/quests");
+  async add() {
+    try {
+      this.isLoading = true;
+      await this.createTeam({ name: this.teamName, members: this.teamMembers });
+      this.$router.push("/quests");
+    } catch (error) {
+      console.log(error);
+    }
+    this.isLoading = false;
   }
 }
 </script>

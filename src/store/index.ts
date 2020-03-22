@@ -1,7 +1,10 @@
 import { Quest, Team } from "./../types";
 import Vue from "vue";
 import Vuex, { Store } from "vuex";
+import axios from 'axios';
 import { State, Getter, Action, Mutation, namespace } from "vuex-class";
+
+const baseUrl = "https://heimspiel.pythonanywhere.com/"
 
 Vue.use(Vuex);
 interface StateInterface {
@@ -29,6 +32,14 @@ export default new Vuex.Store({
       state.team = team
     }
   },
-  actions: {},
+  actions: {
+    createTeam({commit}, team) {
+      return axios
+        .get(baseUrl)
+        .then(response => {
+          commit('addTeam', team)
+        })
+    }
+  },
   modules: {}
 });
