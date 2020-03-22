@@ -65,7 +65,7 @@ import { getCatArray } from "@/utility/categories";
 import { CatItem, Categories } from "../../types";
 
 @Component
-export default class AddQuestion extends Vue {
+export default class AddQuest extends Vue {
   @Prop({
     default: getCatArray
   })

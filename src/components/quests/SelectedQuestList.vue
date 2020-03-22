@@ -20,7 +20,7 @@ import { Quest } from "../../types";
     QuestCard
   }
 })
-export default class QuestList extends Vue {
+export default class SelectedQuestList extends Vue {
   @State public selectedQuests!: Array<Quest>;
   @Mutation public removeSelectedQuest!: (questID: number) => void;
 
