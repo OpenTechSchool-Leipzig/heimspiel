@@ -27,21 +27,30 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Member } from "@/types";
+import { Action, State } from "vuex-class";
 
 @Component
 export default class AddMember extends Vue {
+  @Action public getPlayerAttributes: () => string[];
+  @State(state => state.playerAttributes) playerAttributes;
+
   name = "";
   attributes: string[] = [];
   teamMembers: Member[] = [];
-  tags: string[] = [
-    "Sportskanone",
-    "Witzbold",
-    "Ruhepol",
-    "Braucht Ruhe",
-    "Muss arbeiten",
-    "Kocht gerne",
-    "Treibt viel Sport"
-  ];
+
+  async mounted() {
+    try {
+      await this.getPlayerAttributes();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  get tags() {
+    return this.playerAttributes.map(attribute => {
+      return attribute.name;
+    });
+  }
 
   addAttribute(attribute: string) {
     if (this.attributes.includes(attribute)) {

@@ -56,7 +56,7 @@
                   isLoading ? 'is-loading' : ''
                 ]"
                 :disabled="disabled"
-                @click="add"
+                @click="addTeam"
               >
                 Fertig!
               </button>
@@ -71,12 +71,14 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import AddMember from "@/components/team/AddMember.vue";
-import { Member, Team } from "@/types";
-import { Action } from "vuex-class";
+import { Member, User } from "@/types";
+import { Action, State } from "vuex-class";
 
 @Component({ components: { AddMember } })
 export default class AddTeam extends Vue {
-  @Action public createTeam!: (team: Team) => void;
+  @Action public createUser!: (name: string) => void;
+  @Action public createPlayer!: ({ name, attributes }) => void;
+  @State("user") user: User;
 
   teamMembers: Member[] = [];
   teamName = "";
@@ -86,11 +88,24 @@ export default class AddTeam extends Vue {
     return this.teamName.trim() === "" || this.teamMembers.length < 1;
   }
 
-  async add() {
+  async addTeam() {
     try {
       this.isLoading = true;
-      await this.createTeam({ name: this.teamName, members: this.teamMembers });
-      this.$router.push("/quests");
+      await this.createUser(this.teamName);
+
+      // await Promise.all(
+      //   this.teamMembers.map(async member => {
+      //     return await this.createPlayer({
+      //       name: member.name,
+      //       attributes: member.attributes
+      //     });
+      //   })
+      // );
+
+      this.$router.push({
+        path: "/dashboard",
+        params: { id: this.user.token }
+      });
     } catch (error) {
       console.log(error);
     }

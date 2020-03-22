@@ -35,14 +35,26 @@ export type QuestFilter = {
   searchString: string;
 };
 
-export type Member = {
+export type PlayerAttributes = {
   name: string;
-  attributes: string[];
-};
+  url: string;
+}
 
 export type Team = {
   name: string;
   members: Member[];
 };
+
+export type Member = {
+  name: string;
+  attributes: PlayerAttributes[];
+};
+
+export type User = {
+  id: string,
+  name: string,
+  token: string,
+  url: string
+}
 
 export type TilePosition = "top-right" | "bottom-left";

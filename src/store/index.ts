@@ -1,23 +1,30 @@
-import { Quest, Team } from "./../types";
+import { Quest, Team, PlayerAttributes, User } from "./../types";
 import Vue from "vue";
 import Vuex, { Store } from "vuex";
 import axios from 'axios';
 import { State, Getter, Action, Mutation, namespace } from "vuex-class";
 
-const baseUrl = "https://heimspiel.pythonanywhere.com/"
+const baseUrl = "https://heimspiel.pythonanywhere.com"
 
 Vue.use(Vuex);
 interface StateInterface {
   adventureGroupId: number | null;
   selectedQuests: Array<Quest>;
-  team: Team | null;
+  playerAttributes: PlayerAttributes[]
+  user: User
 }
 
 export default new Vuex.Store({
   state: {
     adventureGroupId: null,
     selectedQuests: [],
-    team: null
+    user: {
+      id: "",
+      name: "",
+      token: "",
+      url: "",
+    },
+    playerAttributes: [],
   } as StateInterface,
   mutations: {
     addSelectedQuest(state, quest: Quest) {
@@ -28,17 +35,41 @@ export default new Vuex.Store({
         sq => sq.id != questId
       );
     },
-    addTeam(state, team: Team) {
-      state.team = team
+    addUser(state, user: User) {
+      state.user.token = user.token || "";
+      state.user.id = user.id || "";
+      state.user.name = user.name || "";
+      state.user.url = user.url || "";
+    },
+    addPlayerAttributes(state, attributes: PlayerAttributes[]) {
+      state.playerAttributes = attributes
     }
   },
   actions: {
-    createTeam({commit}, team) {
-      return axios
-        .get(baseUrl)
+    createUser({commit}, teamName) {
+      return axios.post(`${baseUrl}/users/`, {name: teamName})
         .then(response => {
-          commit('addTeam', team)
+          commit('addUser', response.data)
         })
+    },
+    createPlayer({ commit, state}, { name, attributes }) {
+      if (state.user.token === ""){
+        return Promise.reject("User token missing")
+      }
+      return axios.post(`${baseUrl}/players/`, {user: state.user.token, name: name, attributes: attributes})
+      .then(response => {
+        console.log(response)
+      })
+    },
+    getPlayerAttributes({ commit, state}) {
+      if (state.playerAttributes.length !== 0) {
+        return Promise.resolve(state.playerAttributes)
+      }
+
+      return axios.get(`${baseUrl}/playerattributes/`)
+      .then(response => {
+        commit('addPlayerAttributes', response.data.results)
+      })
     }
   },
   modules: {}
