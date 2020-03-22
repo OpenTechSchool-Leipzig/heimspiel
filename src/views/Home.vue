@@ -25,16 +25,20 @@
           <SpecialButton target="/add-team">Jetzt mitspielen!</SpecialButton>
         </div>
       </div>
+      <RandomTitleGrid position="top-right" />
+      <RandomTitleGrid position="bottom-left" />
     </div>
   </section>
 </template>
 
 <script>
 import SpecialButton from "@/components/general/SpecialButton";
+import RandomTitleGrid from "@/components/icons/RandomTileGrid";
 export default {
   name: "Home",
   components: {
-    SpecialButton
+    SpecialButton,
+    RandomTitleGrid
   }
 };
 </script>
