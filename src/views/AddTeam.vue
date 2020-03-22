@@ -4,7 +4,7 @@
       <div class="columns is-centered">
         <div class="column is-half">
           <h1 class="title">Neues Team anlegen</h1>
-          <form>
+          <form v-on:submit.prevent>
             <div class="field">
               <label class="label">Wie heißt dein Team?</label>
               <div class="control">
@@ -101,6 +101,13 @@ export default class AddTeam extends Vue {
 
 <style scoped lang="scss">
 hr {
-  background-color: #fff;
+  background-color: $white;
+}
+.box {
+  background-color: $white;
+
+  .title {
+    color: $background;
+  }
 }
 </style>
