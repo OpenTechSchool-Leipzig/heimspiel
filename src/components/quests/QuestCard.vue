@@ -17,7 +17,7 @@
         <div class="quest-card-img">
           <img :src="quest.url" />
         </div>
-        <div class="quest-card-text">
+        <div class="quest-card-text has-text-left">
           <p class="text">{{ quest.text }}</p>
           <p class="flavor-text">{{ quest.flavorText }}</p>
         </div>

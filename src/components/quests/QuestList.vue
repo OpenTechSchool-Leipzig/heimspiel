@@ -1,13 +1,16 @@
 <template>
   <div>
     <FilterBar v-model="filter"></FilterBar>
-    <ul class="columns list">
-      <QuestCard
+    <ul class="columns is-multiline">
+      <div
         v-for="quest in filteredQuest"
         :quest="quest"
         :key="quest.id"
         @click="selectQuest(quest)"
-      ></QuestCard>
+        class="column is-one-quarter"
+      >
+        <QuestCard :quest="quest"></QuestCard>
+      </div>
     </ul>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="section is-centered">
-      <h1 class="title">Dashboard</h1>
+      <h1 class="title">Team - Übersicht</h1>
       <br />
       <h2 class="subtitle">Willkomen zurück, Team x!</h2>
     </section>

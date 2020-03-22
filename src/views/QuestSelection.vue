@@ -1,15 +1,28 @@
 <template>
-  <div class="quest-select columns">
-    <div class="column is-one-third">
-      <SelectedQuestList></SelectedQuestList>
-    </div>
-    <div class="column is-two-thirds">
-      <QuestList></QuestList>
-      <button class="button inverted outlined" @click="showModal = true">Quest hinzufügen</button>
-    </div>
-    <Modal v-if="showModal" @closeModal="closeModal">
-      <AddQuestion />
-    </Modal>
+  <div>
+    <section class="section is-centered">
+      <h1 class="title">Quests - Übersicht</h1>
+      <br />
+      <h2 class="subtitle">Wähle deine Quests durch anklicken aus.</h2>
+    </section>
+    <section>
+      <div class="quest-select columns">
+        <div class="column is-one-third">
+          <SelectedQuestList></SelectedQuestList>
+        </div>
+        <div class="column is-two-thirds">
+          <QuestList></QuestList>
+          <div>
+            <button class="button inverted outlined" @click="showModal = true">
+              Neues Quest hinzufügen
+            </button>
+          </div>
+        </div>
+        <Modal v-if="showModal" @closeModal="closeModal">
+          <AddQuestion />
+        </Modal>
+      </div>
+    </section>
   </div>
 </template>
 
