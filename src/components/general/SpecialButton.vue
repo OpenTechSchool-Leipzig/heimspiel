@@ -26,7 +26,7 @@ export default class SpecialButton extends Vue {
   private activeColorId = 1;
 
   get activeColorClass(): string {
-    return "color-" + this.activeColorId;
+    return "category-" + this.activeColorId;
   }
 
   get hasTarget() {
@@ -55,23 +55,5 @@ export default class SpecialButton extends Vue {
   &:hover {
     opacity: 0.8;
   }
-}
-.color-1 {
-  background-color: $productivity;
-}
-.color-2 {
-  background-color: $health;
-}
-.color-3 {
-  background-color: $calm;
-}
-.color-4 {
-  background-color: $household;
-}
-.color-5 {
-  background-color: $social;
-}
-.color-6 {
-  background-color: $activity;
 }
 </style>

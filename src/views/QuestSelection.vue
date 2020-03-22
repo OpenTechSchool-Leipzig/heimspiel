@@ -13,13 +13,14 @@
         <div class="column is-two-thirds">
           <QuestList></QuestList>
           <div>
-            <button class="button inverted outlined" @click="showModal = true">
-              Neues Quest hinzufügen
-            </button>
+            <button
+              class="button inverted outlined"
+              @click="showModal = true"
+            >Neues Quest hinzufügen</button>
           </div>
         </div>
         <Modal v-if="showModal" @closeModal="closeModal">
-          <AddQuestion />
+          <AddQuest />
         </Modal>
       </div>
     </section>
@@ -29,14 +30,14 @@
 <script>
 import QuestList from "@/components/quests/QuestList";
 import SelectedQuestList from "@/components/quests/SelectedQuestList";
-import AddQuestion from "@/components/quests/AddQuestion";
+import AddQuest from "@/components/quests/AddQuest";
 import Modal from "@/components/general/Modal.vue";
 
 export default {
   components: {
     QuestList,
     SelectedQuestList,
-    AddQuestion,
+    AddQuest,
     Modal
   },
   data() {
