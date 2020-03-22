@@ -228,5 +228,3 @@ export default class CategoryTile extends Vue {
   @Prop() private isSmall!: boolean | null;
 }
 </script>
-
-<style lang="scss">

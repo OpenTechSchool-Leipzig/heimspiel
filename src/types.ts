@@ -42,5 +42,7 @@ export type Member = {
 
 export type Team = {
   name: string;
-  members: Member[]
+  members: Member[];
 };
+
+export type TilePosition = "top-right" | "bottom-left";
