@@ -22,9 +22,17 @@
               gemeinsam zu meistern.
             </strong>
           </p>
-          <br />
-          <br />
-          <br />
+          <br /><br />
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube-nocookie.com/embed/LGcex_mjoaE"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          <br /><br />
+          <br /><br />
           <SpecialButton target="/add-team">Jetzt mitspielen!</SpecialButton>
           <br />
         </div>
