@@ -1,13 +1,12 @@
 <template>
-  <button>
+  <button class="button">
     <slot></slot>
   </button>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-export default Vue.extend({});
-</script>
-
-<style>
+<style lang="scss" scoped>
+// adjust top padding to center font
+.button {
+  padding-top: 0.6em;
+}
 </style>
