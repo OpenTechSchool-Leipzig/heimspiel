@@ -56,10 +56,8 @@ export default new Vuex.Store({
       if (state.user.token === ""){
         return Promise.reject("User token missing")
       }
-      return axios.post(`${baseUrl}/players/`, {user: state.user.token, name: name, attributes: attributes})
-      .then(response => {
-        console.log(response)
-      })
+      const attributesList = attributes.map((attribute: PlayerAttribute) => attribute.url)
+      return axios.post(`${baseUrl}/players/`, {user: state.user.url, name: name, attributes: attributesList})
     },
     getPlayerAttributes({ commit, state}) {
       if (state.playerAttributes.length !== 0) {

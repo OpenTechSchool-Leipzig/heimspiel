@@ -98,8 +98,6 @@ export default class AddTeam extends Vue {
 
       await Promise.all(
         this.teamMembers.map(async member => {
-          console.log(member.name);
-          console.log(member.attributes);
           return await this.createPlayer({
             name: member.name,
             attributes: member.attributes
