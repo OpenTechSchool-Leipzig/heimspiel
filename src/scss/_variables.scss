@@ -21,10 +21,16 @@ $white: #ffffff;
 // colors
 
 $primary: $health;
+$scheme-main: $background;
+
 // text
 $text: $white;
 $text-light: $text;
 $text-strong: $text;
+// links
+
+$link-hover: $primary;
+$link-hover-border: $primary;
 
 // inputs
 $input-color: $text;
