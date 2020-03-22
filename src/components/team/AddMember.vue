@@ -17,8 +17,8 @@
       </span>
     </div>
     <div class="control">
-      <button class="button is-inverted is-outlined" @click="add">
-        Weitere Mitglieder hinzufügen
+      <button class="button is-inverted is-outlined" @click="addMember">
+        Teammitglied hinzufügen
       </button>
     </div>
   </div>
@@ -59,7 +59,7 @@ export default class AddMember extends Vue {
     this.memberAttributes.push(attribute);
   }
 
-  add() {
+  addMember() {
     if (this.memberName === "") return;
 
     const member: Member = {

@@ -96,14 +96,16 @@ export default class AddTeam extends Vue {
       this.isLoading = true;
       await this.createUser(this.teamName);
 
-      // await Promise.all(
-      //   this.teamMembers.map(async member => {
-      //     return await this.createPlayer({
-      //       name: member.name,
-      //       attributes: member.attributes
-      //     });
-      //   })
-      // );
+      await Promise.all(
+        this.teamMembers.map(async member => {
+          console.log(member.name);
+          console.log(member.attributes);
+          return await this.createPlayer({
+            name: member.name,
+            attributes: member.attributes
+          });
+        })
+      );
 
       this.$router.push({
         path: "/dashboard",
