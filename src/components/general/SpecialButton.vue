@@ -1,7 +1,7 @@
 <template>
   <router-link
-    v-if="target"
-    to="target"
+    v-if="hasTarget"
+    :to="target"
     class="button is-large is-special"
     :class="activeColorClass"
   >
@@ -15,18 +15,22 @@
 <script lang="ts">
 // TODO: special Button für die Welcome Page
 // Ich dachte vielleicht wechselt er randomly die farbe durch alle Kategorie farben
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import { CatItem } from "../../types";
 import { getCatArray } from "../../utility/categories";
 
 @Component
 export default class SpecialButton extends Vue {
-  @Prop({ default: getCatArray }) private cats!: Array<CatItem>;
-  @Prop() private target!: boolean | null;
+  @Prop({ type: Array, default: getCatArray }) private cats!: CatItem[];
+  @Prop({ type: String, default: "" }) public target!: string;
   private activeColorId = 1;
 
   get activeColorClass(): string {
     return "color-" + this.activeColorId;
+  }
+
+  get hasTarget() {
+    return this.target !== "";
   }
 
   setRandomColor(lastID: number) {
