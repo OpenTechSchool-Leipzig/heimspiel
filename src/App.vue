@@ -2,22 +2,21 @@
   <div id="app">
     <router-view />
     <footer class="footer">
-      <div class="content has-text-centered">
-        <p>
-          <strong>Heimspiel</strong> was built for #WirVsVirus
-        </p>
-      </div>
-      <div id="nav">
+      <div>
         <router-link to="/">Home</router-link>|
         <router-link to="/dashboard">Dashboard</router-link>|
         <router-link to="/quests">Quests</router-link>|
         <router-link to="/about">About</router-link>
       </div>
+      <br />
+      <div class="content has-text-centered is-size-7">
+        <p><strong>Heimspiel</strong> was built for #WirVsVirus</p>
+      </div>
     </footer>
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 #app {
   font-family: $main-font;
   -webkit-font-smoothing: antialiased;
@@ -27,14 +26,21 @@
   background-color: $background;
 }
 
-#nav {
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+a {
+  color: $productivity;
+}
 
-    &.router-link-exact-active {
-      color: #2c3e50;
-    }
+a:hover {
+  color: $activity;
+  text-decoration: underline;
+}
+
+.footer {
+  background-color: $background;
+
+  a.router-link-exact-active {
+    color: $productivity;
+    text-decoration: underline;
   }
 }
 </style>
