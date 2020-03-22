@@ -9,7 +9,7 @@
           <div class="control">
             <div class="select">
               <select v-model="value.category">
-                <option selected disabled value>Select poll state</option>
+                <option selected disabled value>Kategorie</option>
                 <option value>Alle Anzeigen</option>
                 <option v-for="cat in cats" :value="cat.id" :key="cat.id">{{cat.name}}</option>
               </select>

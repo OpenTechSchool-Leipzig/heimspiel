@@ -3,9 +3,7 @@
     <div class="modal">
       <div class="modal-background" @click.prevent="emitClose"></div>
       <div class="modal-content">
-        <div class="box">
-          <slot></slot>
-        </div>
+        <slot></slot>
       </div>
       <button @click.prevent="emitClose" class="modal-close is-large" aria-label="close"></button>
     </div>

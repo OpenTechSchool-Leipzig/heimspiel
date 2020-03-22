@@ -1,0 +1,36 @@
+// main font
+// TODO: selfhost fonts to not depend on google!
+@import url("https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap");
+$main-font: "Overpass Mono", monospace;
+//$font-stack:  Avenir, Helvetica, Arial, sans-serif;
+
+// category colors
+$productivity: #f7a4d3;
+$health: #7dc4f9;
+$calm: #9595f4;
+$household: #78efec;
+$social: #a4f498;
+$activity: #f9b88c;
+
+// ui colors
+$background: #333333;
+$white: #ffffff;
+
+// override bulma variables
+
+// colors
+
+$primary: $health;
+// text
+$text: $white;
+$text-light: $text;
+$text-strong: $text;
+
+// inputs
+$input-color: $text;
+$input-background-color: $background;
+$input-border-color: $white;
+$input-arrow: $white;
+
+//modal
+$modal-card-head-background-color: $background;

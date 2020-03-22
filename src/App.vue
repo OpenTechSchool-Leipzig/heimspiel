@@ -3,12 +3,14 @@
     <router-view />
     <footer class="footer">
       <div class="content has-text-centered">
-        <p><strong>Heimspiel</strong> was built for #WirVsVirus</p>
+        <p>
+          <strong>Heimspiel</strong> was built for #WirVsVirus
+        </p>
       </div>
       <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/dashboard">Dashboard</router-link> |
-        <router-link to="/quests">Quests</router-link> |
+        <router-link to="/">Home</router-link>|
+        <router-link to="/dashboard">Dashboard</router-link>|
+        <router-link to="/quests">Quests</router-link>|
         <router-link to="/about">About</router-link>
       </div>
     </footer>
@@ -17,11 +19,12 @@
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: $main-font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $text;
+  background-color: $background;
 }
 
 #nav {
