@@ -35,7 +35,7 @@ export type QuestFilter = {
   searchString: string;
 };
 
-export type PlayerAttributes = {
+export type PlayerAttribute = {
   name: string;
   url: string;
 }
@@ -47,7 +47,7 @@ export type Team = {
 
 export type Member = {
   name: string;
-  attributes: PlayerAttributes[];
+  attributes: PlayerAttribute[];
 };
 
 export type User = {

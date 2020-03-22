@@ -2,18 +2,18 @@
   <div>
     <label class="label">Wie heißt dein Teammitglied?</label>
     <div class="control">
-      <input class="input" type="text" v-model="name" />
+      <input class="input" type="text" v-model="memberName" />
     </div>
     <br />
-    <label class="label">Welche Eigenschaften hat {{ name }}?</label>
+    <label class="label">Welche Eigenschaften hat {{ memberName }}?</label>
     <div class="tags">
       <span
-        v-for="(tag, index) in tags"
+        v-for="(attribute, index) in playerAttributes"
         :key="index"
-        :class="['tag', 'is-medium', isSelected(tag) ? 'is-primary' : '']"
-        @click="addAttribute(tag)"
+        :class="['tag', 'is-medium', isSelected(attribute) ? 'is-primary' : '']"
+        @click="addAttribute(attribute)"
       >
-        {{ tag }}
+        {{ attribute.name }}
       </span>
     </div>
     <div class="control">
@@ -26,16 +26,16 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Member } from "@/types";
+import { Member, PlayerAttribute } from "@/types";
 import { Action, State } from "vuex-class";
 
 @Component
 export default class AddMember extends Vue {
-  @Action public getPlayerAttributes: () => string[];
-  @State(state => state.playerAttributes) playerAttributes;
+  @Action public getPlayerAttributes!: () => void;
+  @State("playerAttributes") playerAttributes!: PlayerAttribute[];
 
-  name = "";
-  attributes: string[] = [];
+  memberName = "";
+  memberAttributes: PlayerAttribute[] = [];
   teamMembers: Member[] = [];
 
   async mounted() {
@@ -46,33 +46,37 @@ export default class AddMember extends Vue {
     }
   }
 
-  get tags() {
-    return this.playerAttributes.map(attribute => {
-      return attribute.name;
+  attributeExists(attribute: PlayerAttribute) {
+    return this.memberAttributes.find(_attribute => {
+      return _attribute.name === attribute.name;
     });
   }
 
-  addAttribute(attribute: string) {
-    if (this.attributes.includes(attribute)) {
+  addAttribute(attribute: PlayerAttribute) {
+    if (this.attributeExists(attribute)) {
       return;
     }
-    this.attributes.push(attribute);
+    this.memberAttributes.push(attribute);
   }
 
   add() {
-    if (this.name === "") return;
+    if (this.memberName === "") return;
+
     const member: Member = {
-      name: this.name,
-      attributes: this.attributes
+      name: this.memberName,
+      attributes: this.memberAttributes
     };
+
     this.teamMembers.push(member);
-    this.name = "";
-    this.attributes = [];
+    this.memberName = "";
+    this.memberAttributes = [];
     this.$emit("input", this.teamMembers);
   }
 
-  isSelected(tag: string) {
-    return this.attributes.includes(tag);
+  isSelected(attribute: PlayerAttribute) {
+    return this.memberAttributes.find(_attribute => {
+      return _attribute.name === attribute.name;
+    });
   }
 }
 </script>

@@ -35,10 +35,10 @@
                   <p class="title is-6">{{ member.name }}</p>
                   <div class="tags">
                     <span
-                      v-for="(tag, index) in member.attributes"
+                      v-for="(attribute, index) in member.attributes"
                       :key="index"
                       class="tag is-small"
-                      >{{ tag }}</span
+                      >{{ attribute.name }}</span
                     >
                   </div>
                 </div>
@@ -71,14 +71,17 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import AddMember from "@/components/team/AddMember.vue";
-import { Member, User } from "@/types";
+import { Member, User, PlayerAttribute } from "@/types";
 import { Action, State } from "vuex-class";
 
 @Component({ components: { AddMember } })
 export default class AddTeam extends Vue {
   @Action public createUser!: (name: string) => void;
-  @Action public createPlayer!: ({ name, attributes }) => void;
-  @State("user") user: User;
+  @Action public createPlayer!: (player: {
+    name: string;
+    attributes: PlayerAttribute[];
+  }) => void;
+  @State("user") user!: User;
 
   teamMembers: Member[] = [];
   teamName = "";

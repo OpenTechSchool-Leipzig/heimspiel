@@ -1,4 +1,4 @@
-import { Quest, Team, PlayerAttributes, User } from "./../types";
+import { Quest, Team, PlayerAttribute, User } from "@/types";
 import Vue from "vue";
 import Vuex, { Store } from "vuex";
 import axios from 'axios';
@@ -10,7 +10,7 @@ Vue.use(Vuex);
 interface StateInterface {
   adventureGroupId: number | null;
   selectedQuests: Array<Quest>;
-  playerAttributes: PlayerAttributes[]
+  playerAttributes: PlayerAttribute[]
   user: User
 }
 
@@ -41,7 +41,7 @@ export default new Vuex.Store({
       state.user.name = user.name || "";
       state.user.url = user.url || "";
     },
-    addPlayerAttributes(state, attributes: PlayerAttributes[]) {
+    addPlayerAttributes(state, attributes: PlayerAttribute[]) {
       state.playerAttributes = attributes
     }
   },
