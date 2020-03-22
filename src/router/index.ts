@@ -30,7 +30,13 @@ const routes = [
     name: "Quests",
     component: () =>
       import(/* webpackChunkName: "quests" */ "../views/QuestSelection.vue")
-  }
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () =>
+    import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
+  },
 ];
 
 const router = new VueRouter({
