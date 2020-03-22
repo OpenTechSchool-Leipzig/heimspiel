@@ -59,6 +59,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import QuestCard from "@/components/quests/QuestCard.vue";
+import { Quest } from "@/types";
 
 @Component({
   name: "dashboard",
