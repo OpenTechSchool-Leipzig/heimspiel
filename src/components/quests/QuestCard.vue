@@ -31,7 +31,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Quest } from "@/types";
-import CategoryTile from "@/components/icons/CategoryTile2.vue";
+import CategoryTile from "@/components/icons/CategoryTile.vue";
 
 @Component({
   components: {
