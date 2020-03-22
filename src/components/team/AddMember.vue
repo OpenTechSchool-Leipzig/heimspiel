@@ -17,7 +17,7 @@
       </span>
     </div>
     <div class="control">
-      <button class="button is-info is-light is-small" @click="add">
+      <button class="button is-inverted is-outlined" @click="add">
         Weitere Mitglieder hinzufügen
       </button>
     </div>

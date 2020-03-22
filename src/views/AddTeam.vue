@@ -98,3 +98,9 @@ export default class AddTeam extends Vue {
   }
 }
 </script>
+
+<style scoped lang="scss">
+hr {
+  background-color: #fff;
+}
+</style>
