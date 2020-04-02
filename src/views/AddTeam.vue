@@ -11,7 +11,8 @@
                 <input class="input" type="text" v-model="teamName" />
               </div>
             </div>
-            <br /><br />
+            <br />
+            <br />
 
             <add-member v-model="teamMembers" />
 
@@ -21,16 +22,13 @@
             <br />
 
             <h2 class="subtitle">
-              Dein Team heißt: <strong>{{ teamName }}</strong>
+              Dein Team heißt:
+              <strong>{{ teamName }}</strong>
             </h2>
 
             <h2 class="subtitle">Deine Teammitglieder sind:</h2>
             <div class="columns is-multiline">
-              <div
-                v-for="(member, index) in teamMembers"
-                :key="index"
-                class="column is-half"
-              >
+              <div v-for="(member, index) in teamMembers" :key="index" class="column is-half">
                 <div class="box">
                   <p class="title is-6">{{ member.name }}</p>
                   <div class="tags">
@@ -38,8 +36,7 @@
                       v-for="(attribute, index) in member.attributes"
                       :key="index"
                       class="tag is-small"
-                      >{{ attribute.name }}</span
-                    >
+                    >{{ attribute.name }}</span>
                   </div>
                 </div>
               </div>
@@ -57,9 +54,7 @@
                 ]"
                 :disabled="disabled"
                 @click="addTeam"
-              >
-                Fertig!
-              </button>
+              >Fertig!</button>
             </div>
           </form>
         </div>
