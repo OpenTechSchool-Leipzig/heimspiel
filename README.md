@@ -45,7 +45,7 @@ Projects starts at http://localhost:8080/
 
 ## Contribution
 
-Everyone is invited to join working on the project and we try our best to keep it as beginner friendly as possible. So if you just finished your fist Vue tutorial, you got all it takes to get it :blush:
+Everyone is invited to join working on the project and we try our best to keep it as beginner friendly as possible. So if you just finished your fist Vue tutorial, you got all it takes to get into it :blush:
 
 If you want to contribute to the project please check our existing issues first. And when you like to work on an issue let us know through a comment. If you want to dive in deeper or bring your own ideas to the project, please reach out to us in the #wirvsvirus channel on the OpenTechSchool Slack workspace.
 
