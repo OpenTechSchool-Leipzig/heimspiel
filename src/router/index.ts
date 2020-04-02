@@ -35,21 +35,27 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: () =>
-    import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
+      import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
   },
   {
-    path: '/dashboard/:id',
+    path: "/dashboard/:id",
     name: "Team Dashboard",
     component: () =>
-    import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue"),
+      import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue"),
     beforeEnter: (to: any, from: any, next: any) => {
-      next()
+      next();
       // const base64String = `/[a-zA-Z0-9+/]+={0,2}/`
       // if (!(to.params.id).match(base64String)) {
       //   next({ name: 'Dashboard' })
       // }
       // else next()
     }
+  },
+  {
+    path: "/scores",
+    name: "ScoreReport",
+    component: () =>
+      import(/* webpackChunkName: "scores" */ "../views/ScoreReport.vue")
   }
 ];
 

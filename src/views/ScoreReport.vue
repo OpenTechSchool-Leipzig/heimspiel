@@ -3,17 +3,24 @@
     <section class="section is-centered">
       <h1 class="title">Tages Report</h1>
       <br />
-      <h2 class="subtitle">Mal schauen, wie {{team.name}} sich heute geschlagen hat</h2>
+      <h2 class="subtitle">Mal schauen, wie {{ teamName }} sich heute geschlagen hat</h2>
     </section>
-    <section class="section"></section>
+    <section class="section">
+      <!-- TODO: find a good solution dor showing/submiting the user points -->
+      <MemberForm name="test" />
+    </section>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import QuestCard from "@/components/quests/QuestCard.vue";
-import { Quest } from "@/types";
+import { Component, Vue, Prop } from "vue-property-decorator";
+import MemberForm from "@/components/scorereport/MemberForm.vue";
 
-@Component({})
-export default class Dashboard extends Vue {}
+@Component({
+  name: "ScoreReport",
+  components: { MemberForm }
+})
+export default class ScoreReport extends Vue {
+  @Prop() private test!: string;
+}
 </script>
