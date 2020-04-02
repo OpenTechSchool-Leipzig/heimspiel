@@ -106,8 +106,7 @@ export default class AddTeam extends Vue {
       );
 
       this.$router.push({
-        path: "/dashboard",
-        params: { id: this.user.token }
+        path: `/dashboard/${this.user.token}`
       });
     } catch (error) {
       console.log(error);
