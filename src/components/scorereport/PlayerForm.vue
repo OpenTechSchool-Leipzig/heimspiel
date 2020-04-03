@@ -1,7 +1,12 @@
 <template>
   <form class="player-form">
     <template v-for="cat in cats">
-      <CatInput :id="cat.id" :name="cat.name" :key="cat.id" v-model.number="value[cat.id]" />
+      <CatInput
+        :id="cat.id"
+        :name="cat.name"
+        :key="cat.id"
+        v-model.number="value[cat.id]"
+      />
     </template>
   </form>
 </template>
