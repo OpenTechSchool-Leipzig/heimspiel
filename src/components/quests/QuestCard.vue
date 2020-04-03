@@ -18,7 +18,10 @@
     <svg height="0" width="0">
       <defs>
         <clipPath id="clip">
-          <path d="M92 0L0 53.2725V159.727L92 213L184 159.727V53.2725L92 0Z" fill="#7DC4F9" />
+          <path
+            d="M92 0L0 53.2725V159.727L92 213L184 159.727V53.2725L92 0Z"
+            fill="#7DC4F9"
+          />
         </clipPath>
       </defs>
     </svg>

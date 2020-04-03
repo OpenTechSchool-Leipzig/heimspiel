@@ -14,7 +14,9 @@
           <select v-model="category">
             <option selected disabled value>Select poll state</option>
             <option value>Alle Anzeigen</option>
-            <option v-for="cat in cats" :value="cat.id" :key="cat.id">{{cat.name}}</option>
+            <option v-for="cat in cats" :value="cat.id" :key="cat.id">{{
+              cat.name
+            }}</option>
           </select>
         </div>
       </div>
@@ -46,7 +48,7 @@
         <div class="select">
           <select v-model="score">
             <option selected disabled value>Auswählen</option>
-            <option v-for="val in 6" :value="val" :key="val">{{val}}</option>
+            <option v-for="val in 6" :value="val" :key="val">{{ val }}</option>
           </select>
         </div>
       </div>

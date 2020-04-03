@@ -3,7 +3,12 @@
     <div class="level is-mobile">
       <div class="level-left">
         <div class="control" v-if="typeof value.searchString != 'undefined'">
-          <input class="input" type="text" v-model="value.searchString" placeholder="Suche" />
+          <input
+            class="input"
+            type="text"
+            v-model="value.searchString"
+            placeholder="Suche"
+          />
         </div>
         <div v-if="typeof value.category != 'undefined'" class="field">
           <div class="control">
@@ -11,7 +16,9 @@
               <select v-model="value.category">
                 <option selected disabled value>Kategorie</option>
                 <option value>Alle Anzeigen</option>
-                <option v-for="cat in cats" :value="cat.id" :key="cat.id">{{cat.name}}</option>
+                <option v-for="cat in cats" :value="cat.id" :key="cat.id">{{
+                  cat.name
+                }}</option>
               </select>
             </div>
           </div>
@@ -40,7 +47,6 @@ export default class FilterBar extends Vue {
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 .filter-body {

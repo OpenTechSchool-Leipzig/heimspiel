@@ -38,7 +38,7 @@ export type QuestFilter = {
 export type PlayerAttribute = {
   name: string;
   url: string;
-}
+};
 
 export type Team = {
   name: string;
@@ -51,10 +51,10 @@ export type Member = {
 };
 
 export type User = {
-  id: string,
-  name: string,
-  token: string,
-  url: string
-}
+  id: string;
+  name: string;
+  token: string;
+  url: string;
+};
 
 export type TilePosition = "top-right" | "bottom-left";

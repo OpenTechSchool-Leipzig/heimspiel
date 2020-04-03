@@ -1,6 +1,6 @@
 <template>
   <div class="score-wrapper">
-    <span class="score">{{ score}}</span>
+    <span class="score">{{ score }}</span>
     <svg
       class="score-icon"
       :class="'category-' + catID"

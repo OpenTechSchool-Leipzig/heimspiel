@@ -13,10 +13,9 @@
         <div class="column is-two-thirds">
           <QuestList></QuestList>
           <div>
-            <button
-              class="button inverted outlined"
-              @click="showModal = true"
-            >Neues Quest hinzufügen</button>
+            <button class="button inverted outlined" @click="showModal = true">
+              Neues Quest hinzufügen
+            </button>
           </div>
         </div>
         <Modal v-if="showModal" @closeModal="closeModal">

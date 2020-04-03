@@ -7,7 +7,11 @@
           <slot></slot>
         </div>
       </div>
-      <button @click.prevent="emitClose" class="modal-close is-large" aria-label="close"></button>
+      <button
+        @click.prevent="emitClose"
+        class="modal-close is-large"
+        aria-label="close"
+      ></button>
     </div>
   </transition>
 </template>
