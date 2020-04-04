@@ -1,61 +1,30 @@
-// category color classes
-div,
-a,
-button {
-  &.category-1 {
-    background-color: $health;
+// programmtically create classes for category colors:
+
+$cat-colors: (
+  1: $health,
+  2: $calm,
+  3: $productivity,
+  4: $household,
+  5: $social,
+  6: $activity
+);
+
+@each $number, $color in $cat-colors {
+  div,
+  a.button,
+  button {
+    &.category-#{$number} {
+      background-color: $color;
+    }
   }
-}
-svg.category-1 {
-  fill: $health;
-}
-div,
-a,
-button {
-  &.category-2 {
-    background-color: $calm;
+  svg.category-#{$number} {
+    fill: $color;
   }
-}
-svg.category-2 {
-  fill: $calm;
-}
-div,
-a,
-button {
-  &.category-3 {
-    background-color: $productivity;
+  a,
+  p,
+  span {
+    &.category-#{$number} {
+      color: $color;
+    }
   }
-}
-svg.category-3 {
-  fill: $productivity;
-}
-div,
-a,
-button {
-  .category-4 {
-    background-color: $household;
-  }
-}
-svg.category-4 {
-  fill: $household;
-}
-div,
-a,
-button {
-  .category-5 {
-    background-color: $social;
-  }
-}
-svg.category-5 {
-  fill: $social;
-}
-div,
-a,
-button {
-  .category-6 {
-    background-color: $activity;
-  }
-}
-svg.category-6 {
-  fill: $activity;
 }
