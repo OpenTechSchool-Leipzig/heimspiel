@@ -6,6 +6,7 @@
       <div class="control">
         <input
           class="input"
+          :class="'category-' + id"
           type="number"
           :value="value"
           @input="$emit('input', $event.target.value)"
@@ -34,7 +35,7 @@ export default class CatInput extends Vue {
 <style lang="scss" scoped>
 .attribute-input {
   display: flex;
-  justify-content: stretch;
+  justify-content: space-between;
   max-width: 600px;
   margin: 3rem auto;
 }
@@ -43,5 +44,8 @@ export default class CatInput extends Vue {
   flex-direction: column;
   margin-left: 2rem;
   align-items: flex-end;
+}
+.input {
+  max-width: 100px;
 }
 </style>

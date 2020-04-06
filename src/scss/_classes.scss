@@ -6,7 +6,7 @@ $cat-colors: (
   3: $productivity,
   4: $household,
   5: $social,
-  6: $activity
+  6: $activity,
 );
 
 @each $number, $color in $cat-colors {
@@ -26,5 +26,8 @@ $cat-colors: (
     &.category-#{$number} {
       color: $color;
     }
+  }
+  input.category-#{$number} {
+    border-color: $color;
   }
 }
