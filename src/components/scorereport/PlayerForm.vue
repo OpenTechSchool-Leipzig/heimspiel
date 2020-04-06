@@ -36,3 +36,19 @@ export default class PlayerForm extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.v-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.v-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.2s ease;
+}
+</style>

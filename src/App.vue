@@ -6,7 +6,8 @@
         <router-link to="/">Home</router-link> |
         <router-link to="/dashboard">Dashboard</router-link> |
         <router-link to="/quests">Quests</router-link> |
-        <router-link to="/about">About</router-link>
+        <router-link to="/about">About</router-link> |
+        <router-link to="/scores">Score Report</router-link>
       </div>
       <br />
       <div class="content has-text-centered is-size-7">

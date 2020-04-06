@@ -23,7 +23,7 @@
       </div>
       <div class="slideshow">
         <button class="btn" @click="slide()">prev</button>
-        <transition>
+        <transition mode="out-in">
           <PlayerForm v-model="activePlayer.points" :key="activePlayerKey" />
         </transition>
         <button class="btn" @click="slide(true)">next</button>
@@ -60,9 +60,9 @@ export default class ScoreReport extends Vue {
   }
 
   slide(isNext: boolean): void {
-    if (isNext && this.activePlayerKey < this.players.length) {
+    if (isNext && this.activePlayerKey < this.players.length - 1) {
       this.activePlayerKey++;
-    } else if (this.activePlayerKey > 0) {
+    } else if (!isNext && this.activePlayerKey > 0) {
       this.activePlayerKey--;
     }
   }
