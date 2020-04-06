@@ -12,9 +12,8 @@
         :key="index"
         :class="['tag', 'is-medium', isSelected(attribute) ? 'is-primary' : '']"
         @click="addAttribute(attribute)"
+        >{{ attribute.name }}</span
       >
-        {{ attribute.name }}
-      </span>
     </div>
     <div class="control">
       <button class="button is-inverted is-outlined" @click="addMember">
@@ -27,23 +26,24 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Member, PlayerAttribute } from "@/types";
-import { Action, State } from "vuex-class";
+import { TeamModule } from "@/store/modules/team";
 
 @Component
 export default class AddMember extends Vue {
-  @Action public getPlayerAttributes!: () => void;
-  @State("playerAttributes") playerAttributes!: PlayerAttribute[];
-
   memberName = "";
   memberAttributes: PlayerAttribute[] = [];
   teamMembers: Member[] = [];
 
-  async mounted() {
+  mounted() {
     try {
-      await this.getPlayerAttributes();
+      TeamModule.fetchPlayerAttributes();
     } catch (error) {
       console.log(error);
     }
+  }
+
+  get playerAttributes(): PlayerAttribute[] {
+    return TeamModule.playerAttributes;
   }
 
   attributeExists(attribute: PlayerAttribute) {

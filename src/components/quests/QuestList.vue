@@ -13,11 +13,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { Quest, QuestFilter } from "@/types";
 import QuestCard from "./QuestCard.vue";
 import FilterBar from "./FilterBar.vue";
-import { Mutation, State } from "vuex-class";
+import { QuestsModule } from "@/store/modules/quests";
 
 @Component({
   components: {
@@ -26,9 +26,6 @@ import { Mutation, State } from "vuex-class";
   }
 })
 export default class QuestList extends Vue {
-  @Mutation public addSelectedQuest!: (quest: Quest) => void;
-  @State public selectedQuests!: Array<Quest>;
-
   // TODO: fetch quests from API
   private quests: Array<Quest> = [
     {
@@ -64,7 +61,7 @@ export default class QuestList extends Vue {
   };
 
   get selectedQuestIds(): Array<number> {
-    return this.selectedQuests.map(q => q.id);
+    return QuestsModule.selectedQuests.map(q => q.id);
   }
 
   get openQuests(): Array<Quest> {
@@ -83,7 +80,7 @@ export default class QuestList extends Vue {
   }
 
   selectQuest(quest: Quest) {
-    this.addSelectedQuest(quest);
+    QuestsModule.addSelectedQuest(quest);
   }
 }
 </script>

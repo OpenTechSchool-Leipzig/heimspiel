@@ -10,10 +10,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import QuestCard from "./QuestCard.vue";
-import { State, Mutation } from "vuex-class";
-import { Quest } from "../../types";
+import { Component, Vue } from "vue-property-decorator";
+import QuestCard from "@/components/quests/QuestCard.vue";
+import { QuestsModule } from "@/store/modules/quests";
 
 @Component({
   components: {
@@ -21,11 +20,12 @@ import { Quest } from "../../types";
   }
 })
 export default class SelectedQuestList extends Vue {
-  @State public selectedQuests!: Array<Quest>;
-  @Mutation public removeSelectedQuest!: (questID: number) => void;
-
   deSelectQuest(questID: number) {
-    this.removeSelectedQuest(questID);
+    QuestsModule.removeSelectedQuest(questID);
+  }
+
+  get selectedQuests() {
+    return QuestsModule.selectedQuests;
   }
 }
 </script>
