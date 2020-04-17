@@ -39,7 +39,7 @@ The backend code can be found [here](https://github.com/OpenTechSchool-Leipzig/h
 
 `yarn install`
 
-`yarn run serve`
+`yarn serve`
 
 Projects starts at http://localhost:8080/
 

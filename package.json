@@ -7,6 +7,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "engines": {
+    "node": ">=12.13.1"
+  },
   "dependencies": {
     "axios": "^0.19.2",
     "bulma": "^0.8.0",
@@ -36,7 +39,8 @@
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
     "typescript": "~3.7.5",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vuex-module-decorators": "^0.16.1"
   },
   "eslintConfig": {
     "root": true,
