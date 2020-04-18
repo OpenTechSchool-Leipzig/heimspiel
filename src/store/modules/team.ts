@@ -3,13 +3,24 @@ import {
   VuexModule,
   Mutation,
   Action,
-  getModule
+  getModule,
 } from "vuex-module-decorators";
 import { PlayerAttribute, User } from "@/types";
 import axios from "axios";
 import store from "@/store";
 
 const baseUrl = "https://heimspiel.pythonanywhere.com";
+
+const axiosInstance = axios.create({
+  baseURL: baseUrl,
+});
+
+const getAxiosAuthInstance = (token: string) => {
+  return axios.create({
+    baseURL: baseUrl,
+    headers: { Authorization: `Token ${token}` },
+  });
+};
 
 export interface TeamState {
   adventureGroupId: number | null;
@@ -24,7 +35,7 @@ class Team extends VuexModule {
     id: "",
     name: "",
     token: "",
-    url: ""
+    url: "",
   } as User;
   public playerAttributes: PlayerAttribute[] = [];
 
@@ -48,8 +59,8 @@ class Team extends VuexModule {
   @Action({ rawError: true })
   public async createUser(teamName: string) {
     try {
-      const { data } = await axios.post(`${baseUrl}/users/`, {
-        name: teamName
+      const { data } = await axiosInstance.post("/users/", {
+        name: teamName,
       });
       this.ADD_USER(data);
       return data;
@@ -61,7 +72,7 @@ class Team extends VuexModule {
   @Action({ rawError: true })
   public async createPlayer({
     name,
-    attributes
+    attributes,
   }: {
     name: string;
     attributes: PlayerAttribute[];
@@ -73,10 +84,11 @@ class Team extends VuexModule {
       (attribute: PlayerAttribute) => attribute.url
     );
     try {
-      const response = await axios.post(`${baseUrl}/players/`, {
+      const axiosAuthInstance = getAxiosAuthInstance(this.user.token);
+      const response = await axiosAuthInstance.post("/players/", {
         user: this.user.url,
         name: name,
-        attributes: attributesList
+        attributes: attributesList,
       });
       return response;
     } catch (error) {
@@ -87,7 +99,7 @@ class Team extends VuexModule {
   @Action({ rawError: true })
   public async fetchPlayerAttributes() {
     try {
-      const { data } = await axios.get(`${baseUrl}/playerattributes/`);
+      const { data } = await axiosInstance.get("/playerattributes/");
       this.ADD_PLAYER_ATTRIBUTE(data.results);
       return data.results;
     } catch (error) {

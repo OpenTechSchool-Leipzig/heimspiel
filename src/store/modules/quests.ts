@@ -3,7 +3,7 @@ import {
   VuexModule,
   Mutation,
   Action,
-  getModule
+  getModule,
 } from "vuex-module-decorators";
 import { Quest } from "@/types";
 import store from "@/store";
@@ -23,7 +23,7 @@ class Quests extends VuexModule {
 
   @Mutation
   private REMOVE_SELECTED_QUEST(questId: number) {
-    this.selectedQuests = this.selectedQuests.filter(sq => sq.id != questId);
+    this.selectedQuests = this.selectedQuests.filter((sq) => sq.id != questId);
   }
 
   @Action({ rawError: true })
