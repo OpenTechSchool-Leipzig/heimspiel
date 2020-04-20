@@ -72,13 +72,13 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import AddMember from "@/components/team/AddMember.vue";
-import { Member } from "@/types";
+import AddPlayer from "@/components/team/AddPlayer.vue";
+import { Player } from "@/types";
 import { TeamModule } from "@/store/modules/team";
 
-@Component({ components: { AddMember } })
+@Component({ components: { AddPlayer } })
 export default class AddTeam extends Vue {
-  teamMembers: Member[] = [];
+  teamMembers: Player[] = [];
   teamName = "";
   isLoading = false;
 
@@ -89,7 +89,7 @@ export default class AddTeam extends Vue {
   async addTeam() {
     try {
       this.isLoading = true;
-      await TeamModule.createUser(this.teamName);
+      await TeamModule.createTeam(this.teamName);
 
       await Promise.all(
         this.teamMembers.map(async member => {
@@ -101,7 +101,7 @@ export default class AddTeam extends Vue {
       );
 
       this.$router.push({
-        path: `/dashboard/${TeamModule.user.token}`
+        path: `/dashboard/${TeamModule.team.token}`
       });
     } catch (error) {
       console.log(error);

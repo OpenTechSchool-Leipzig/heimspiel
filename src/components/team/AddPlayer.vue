@@ -25,14 +25,14 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Member, PlayerAttribute } from "@/types";
+import { Player, PlayerAttribute } from "@/types";
 import { TeamModule } from "@/store/modules/team";
 
 @Component
 export default class AddMember extends Vue {
   memberName = "";
   memberAttributes: PlayerAttribute[] = [];
-  teamMembers: Member[] = [];
+  teamMembers: Player[] = [];
 
   mounted() {
     try {
@@ -62,7 +62,7 @@ export default class AddMember extends Vue {
   addMember() {
     if (this.memberName === "") return;
 
-    const member: Member = {
+    const member: Player = {
       name: this.memberName,
       attributes: this.memberAttributes
     };

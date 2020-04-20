@@ -4,7 +4,7 @@ export enum Categories {
   Produktivität = 3,
   Haushalt = 4,
   Zusammenhalt = 5,
-  Beschäftigung = 6
+  Beschäftigung = 6,
 }
 
 export type CategorieTitles = keyof typeof Categories;
@@ -40,17 +40,12 @@ export type PlayerAttribute = {
   url: string;
 };
 
-export type Team = {
-  name: string;
-  members: Member[];
-};
-
-export type Member = {
+export type Player = {
   name: string;
   attributes: PlayerAttribute[];
 };
 
-export type User = {
+export type Team = {
   id: string;
   name: string;
   token: string;
