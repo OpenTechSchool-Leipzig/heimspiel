@@ -3,11 +3,7 @@
     <h3 class="headline">{{ quest.title }}</h3>
     <p class="text">{{ quest.text }}</p>
     <p v-if="quest.flavorText" class="flavor-text">{{ quest.flavorText }}</p>
-    <img
-      src="https://bulma.io/images/placeholders/1280x960.png"
-      alt="Placeholder image"
-      class="img"
-    />
+    <img :src="quest.image" alt="" class="img" />
     <span class="icons">
       <QuestScore :catID="quest.category.id" :score="quest.score"></QuestScore>
     </span>

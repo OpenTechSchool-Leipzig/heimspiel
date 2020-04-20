@@ -27,7 +27,7 @@ export type Quest = {
   text: string;
   flavorText: string;
   score: number;
-  imageURL: string | null;
+  image: string | null;
 };
 
 export type QuestFilter = {

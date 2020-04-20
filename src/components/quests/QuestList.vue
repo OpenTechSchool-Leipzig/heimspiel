@@ -26,39 +26,22 @@ import { QuestsModule } from "@/store/modules/quests";
   }
 })
 export default class QuestList extends Vue {
-  // TODO: fetch quests from API
-  private quests: Array<Quest> = [
-    {
-      id: 0,
-      title: "Müll rausbringen",
-      category: {
-        title: "Haushalt",
-        id: 4
-      },
-      text:
-        "Das übelrichende Müllmonster hat wieder zugeschlagen, bringe es schnell raus, bevor es schlimemr wird.. oder anfängt wegzulaufen!",
-      flavorText: "sorgt dafür, dass die Wohnung sauber bleibt.",
-      score: 5,
-      imageURL: ""
-    },
-    {
-      id: 1,
-      title: "Home Office",
-      category: {
-        title: "Produktivität",
-        id: 3
-      },
-      text:
-        "Das tägliche Übel des Broterwerbs... na hoffentlich machts auch Spaß!",
-      flavorText: "",
-      score: 15,
-      imageURL: ""
-    }
-  ];
   private filter: QuestFilter = {
     category: null,
     searchString: ""
   };
+
+  mounted() {
+    try {
+      QuestsModule.fetchQuests();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  get quests() {
+    return QuestsModule.quests;
+  }
 
   get selectedQuestIds(): Array<number> {
     return QuestsModule.selectedQuests.map(q => q.id);
