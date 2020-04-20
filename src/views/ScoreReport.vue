@@ -22,11 +22,11 @@
         <span>Punkte</span>
       </div>
       <div class="slideshow">
-        <button class="btn" @click="slide()">prev</button>
+        <HexButton @click="slide()">prev</HexButton>
         <transition mode="out-in">
           <PlayerForm v-model="activePlayer.points" :key="activePlayerKey" />
         </transition>
-        <button class="btn" @click="slide(true)">next</button>
+        <HexButton @click="slide(true)">next</HexButton>
       </div>
     </section>
   </div>
@@ -35,10 +35,11 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import PlayerForm from "@/components/scorereport/PlayerForm.vue";
+import HexButton from "@/components/general/HexButton.vue";
 
 @Component({
   name: "ScoreReport",
-  components: { PlayerForm }
+  components: { PlayerForm, HexButton }
 })
 export default class ScoreReport extends Vue {
   activePlayerKey = 0;
