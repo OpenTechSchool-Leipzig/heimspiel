@@ -5,15 +5,24 @@ import {
   Action,
   getModule,
 } from "vuex-module-decorators";
+import axios from "axios";
 import { Quest } from "@/types";
 import store from "@/store";
 
 export interface QuestsState {
+  quests: Quest[];
   selectedQuests: Quest[];
 }
 
+const baseUrl = "https://heimspiel.pythonanywhere.com";
+
+const axiosInstance = axios.create({
+  baseURL: baseUrl
+});
+
 @Module({ dynamic: true, store, name: "quests" })
 class Quests extends VuexModule {
+  public quests: Quest[] = [];
   public selectedQuests: Quest[] = [];
 
   @Mutation
@@ -26,6 +35,11 @@ class Quests extends VuexModule {
     this.selectedQuests = this.selectedQuests.filter((sq) => sq.id != questId);
   }
 
+  @Mutation
+  private UPDATE_QUESTS(quests: Quest[]) {
+    this.quests = quests
+  }
+
   @Action({ rawError: true })
   public async addSelectedQuest(quest: Quest) {
     this.ADD_SELECTED_QUEST(quest);
@@ -34,6 +48,18 @@ class Quests extends VuexModule {
   @Action({ rawError: true })
   public async removeSelectedQuest(questId: number) {
     this.REMOVE_SELECTED_QUEST(questId);
+  }
+
+  @Action({rawError: true})
+  public async fetchQuests() {
+    try {
+      const { data } = await axiosInstance.get('/quests')
+      if (data.results) {
+        this.UPDATE_QUESTS(data.results)
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
 

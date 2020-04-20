@@ -78,7 +78,7 @@ export default class Dashboard extends Vue {
         "Das übelrichende Müllmonster hat wieder zugeschlagen, bringe es schnell raus, bevor es schlimemr wird.. oder anfängt wegzulaufen!",
       flavorText: "sorgt dafür, dass die Wohnung sauber bleibt.",
       score: 5,
-      imageURL: ""
+      image: ""
     },
     {
       id: 1,
@@ -91,7 +91,7 @@ export default class Dashboard extends Vue {
         "Das tägliche Übel des Broterwerbs... na hoffentlich machts auch Spaß!",
       flavorText: "",
       score: 15,
-      imageURL: ""
+      image: ""
     }
   ];
 }
