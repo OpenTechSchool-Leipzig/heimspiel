@@ -3,7 +3,7 @@ import {
   VuexModule,
   Mutation,
   Action,
-  getModule,
+  getModule
 } from "vuex-module-decorators";
 import axios from "axios";
 import { Quest } from "@/types";
@@ -37,7 +37,7 @@ class Quests extends VuexModule {
 
   @Mutation
   private UPDATE_QUESTS(quests: Quest[]) {
-    this.quests = quests
+    this.quests = quests;
   }
 
   @Action({ rawError: true })
@@ -50,12 +50,12 @@ class Quests extends VuexModule {
     this.REMOVE_SELECTED_QUEST(questId);
   }
 
-  @Action({rawError: true})
+  @Action({ rawError: true })
   public async fetchQuests() {
     try {
-      const { data } = await axiosInstance.get('/quests')
+      const { data } = await axiosInstance.get("/quests");
       if (data.results) {
-        this.UPDATE_QUESTS(data.results)
+        this.UPDATE_QUESTS(data.results);
       }
     } catch (error) {
       throw new Error(error);

@@ -3,48 +3,68 @@ import {
   VuexModule,
   Mutation,
   Action,
-  getModule,
+  getModule
 } from "vuex-module-decorators";
-import { PlayerAttribute, User } from "@/types";
+import { PlayerAttribute, Player, Team as TeamType } from "@/types";
 import axios from "axios";
 import store from "@/store";
 
 const baseUrl = "https://heimspiel.pythonanywhere.com";
 
 const axiosInstance = axios.create({
-  baseURL: baseUrl,
+  baseURL: baseUrl
 });
 
 const getAxiosAuthInstance = (token: string) => {
   return axios.create({
     baseURL: baseUrl,
-    headers: { Authorization: `Token ${token}` },
+    headers: { Authorization: `Token ${token}` }
   });
 };
 
 export interface TeamState {
   adventureGroupId: number | null;
-  user: User;
+  team: TeamType;
+  players: Player[];
   playerAttributes: PlayerAttribute[];
 }
 
 @Module({ dynamic: true, store, name: "team" })
 class Team extends VuexModule {
   public adventureGroupId: number | null = null;
-  public user = {
+  public team = {
     id: "",
     name: "",
     token: "",
-    url: "",
-  } as User;
+    url: ""
+  } as TeamType;
+  public players: Player[] = [];
   public playerAttributes: PlayerAttribute[] = [];
 
   @Mutation
-  private ADD_USER(user: User) {
-    this.user.token = user.token || "";
-    this.user.id = user.id || "";
-    this.user.name = user.name || "";
-    this.user.url = user.url || "";
+  private RESET_STORE() {
+    this.adventureGroupId = null;
+    this.team = {
+      id: "",
+      name: "",
+      token: "",
+      url: ""
+    };
+    this.players = [];
+    this.playerAttributes = [];
+  }
+
+  @Mutation
+  private ADD_TEAM(user: TeamType) {
+    this.team.token = user.token || "";
+    this.team.id = user.id || "";
+    this.team.name = user.name || "";
+    this.team.url = user.url || "";
+  }
+
+  @Mutation
+  private ADD_PLAYERS(players: Player[]) {
+    this.players = players;
   }
 
   @Mutation
@@ -57,13 +77,34 @@ class Team extends VuexModule {
    * @param teamName
    */
   @Action({ rawError: true })
-  public async createUser(teamName: string) {
+  public async createTeam(teamName: string) {
+    this.RESET_STORE();
     try {
       const { data } = await axiosInstance.post("/users/", {
-        name: teamName,
+        name: teamName
       });
-      this.ADD_USER(data);
+      this.ADD_TEAM(data);
       return data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  @Action({ rawError: true })
+  public async getTeam(token: string) {
+    this.RESET_STORE();
+    try {
+      const axiosAuthInstance = getAxiosAuthInstance(token);
+      const { data } = await axiosAuthInstance.get(`/users`);
+      // todo: right now, returning the first user found
+      // once auth is implemented api should only return the requested user for the token
+      const user: TeamType = {
+        token,
+        id: data.results[0].id,
+        name: data.results[0].name,
+        url: data.results[0].url
+      };
+      this.ADD_TEAM(user);
     } catch (error) {
       throw new Error(error);
     }
@@ -72,25 +113,36 @@ class Team extends VuexModule {
   @Action({ rawError: true })
   public async createPlayer({
     name,
-    attributes,
+    attributes
   }: {
     name: string;
     attributes: PlayerAttribute[];
   }) {
-    if (this.user.token === "") {
+    if (this.team.token === "") {
       throw Error("User token missing");
     }
     const attributesList = attributes.map(
       (attribute: PlayerAttribute) => attribute.url
     );
     try {
-      const axiosAuthInstance = getAxiosAuthInstance(this.user.token);
+      const axiosAuthInstance = getAxiosAuthInstance(this.team.token);
       const response = await axiosAuthInstance.post("/players/", {
-        user: this.user.url,
+        user: this.team.url,
         name: name,
-        attributes: attributesList,
+        attributes: attributesList
       });
       return response;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  @Action({ rawError: true })
+  public async getPlayers() {
+    try {
+      const axiosAuthInstance = getAxiosAuthInstance(this.team.token);
+      const { data } = await axiosAuthInstance.get("/players");
+      this.ADD_PLAYERS(data.results);
     } catch (error) {
       throw new Error(error);
     }

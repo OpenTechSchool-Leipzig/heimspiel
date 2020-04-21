@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div v-if="id">
     <section class="section is-centered">
       <h1 class="title">Team - Übersicht</h1>
       <br />
-      <h2 class="subtitle">Willkomen zurück, Team x!</h2>
+      <h2 class="subtitle">Willkomen zurück, Team {{ teamName }}!</h2>
     </section>
     <section class="section">
       <div class="container">
@@ -13,17 +13,20 @@
               <p class="panel-heading">
                 Team Members
               </p>
-              <div class="panel-block">
-                <p>Marco</p>
-              </div>
-              <div class="panel-block">
-                <p>Anna</p>
+              <div
+                v-for="(player, index) in players"
+                :key="index"
+                class="panel-block"
+              >
+                <p>{{ player.name }}</p>
               </div>
             </article>
 
             <br />
             <br />
-            <router-link to="/" class="button">Tag beenden</router-link>
+            <router-link :to="`/scores/${id}`" class="button"
+              >Tag beenden</router-link
+            >
             <br />
             <br />
             <router-link to="/quests" class="button"
@@ -59,6 +62,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import QuestCard from "@/components/quests/QuestCard.vue";
+import { TeamModule } from "@/store/modules/team";
 import { Quest } from "@/types";
 
 @Component({
@@ -94,5 +98,29 @@ export default class Dashboard extends Vue {
       image: ""
     }
   ];
+
+  async mounted() {
+    if (!this.$router.currentRoute.params.id) {
+      console.log("Dashboard not found");
+    }
+    try {
+      await TeamModule.getTeam(this.$router.currentRoute.params.id);
+      await TeamModule.getPlayers();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  get id() {
+    return this.$router.currentRoute.params.id;
+  }
+
+  get teamName() {
+    return TeamModule.team.name;
+  }
+
+  get players() {
+    return TeamModule.players;
+  }
 }
 </script>
