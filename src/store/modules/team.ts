@@ -35,8 +35,7 @@ class Team extends VuexModule {
   public team = {
     id: "",
     name: "",
-    token: "",
-    url: ""
+    token: ""
   } as TeamType;
   public players: Player[] = [];
   public playerAttributes: PlayerAttribute[] = [];
@@ -47,8 +46,7 @@ class Team extends VuexModule {
     this.team = {
       id: "",
       name: "",
-      token: "",
-      url: ""
+      token: ""
     };
     this.players = [];
     this.playerAttributes = [];
@@ -59,7 +57,6 @@ class Team extends VuexModule {
     this.team.token = user.token || "";
     this.team.id = user.id || "";
     this.team.name = user.name || "";
-    this.team.url = user.url || "";
   }
 
   @Mutation
@@ -101,8 +98,7 @@ class Team extends VuexModule {
       const user: TeamType = {
         token,
         id: data.results[0].id,
-        name: data.results[0].name,
-        url: data.results[0].url
+        name: data.results[0].name
       };
       this.ADD_TEAM(user);
     } catch (error) {
@@ -122,12 +118,12 @@ class Team extends VuexModule {
       throw Error("User token missing");
     }
     const attributesList = attributes.map(
-      (attribute: PlayerAttribute) => attribute.url
+      (attribute: PlayerAttribute) => attribute.id
     );
     try {
       const axiosAuthInstance = getAxiosAuthInstance(this.team.token);
       const response = await axiosAuthInstance.post("/players/", {
-        user: this.team.url,
+        user: this.team.id,
         name: name,
         attributes: attributesList
       });
