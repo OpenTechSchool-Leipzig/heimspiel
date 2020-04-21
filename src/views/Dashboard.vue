@@ -63,7 +63,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import QuestCard from "@/components/quests/QuestCard.vue";
 import { TeamModule } from "@/store/modules/team";
-import { Quest } from "@/types";
+import { Categories, Quest } from "@/types";
 
 @Component({
   name: "dashboard",
@@ -74,10 +74,7 @@ export default class Dashboard extends Vue {
     {
       id: 0,
       title: "Müll rausbringen",
-      category: {
-        title: "Haushalt",
-        id: 4
-      },
+      category: "chores",
       text:
         "Das übelrichende Müllmonster hat wieder zugeschlagen, bringe es schnell raus, bevor es schlimemr wird.. oder anfängt wegzulaufen!",
       flavorText: "sorgt dafür, dass die Wohnung sauber bleibt.",
@@ -87,10 +84,7 @@ export default class Dashboard extends Vue {
     {
       id: 1,
       title: "Home Office",
-      category: {
-        title: "Produktivität",
-        id: 3
-      },
+      category: "productivity",
       text:
         "Das tägliche Übel des Broterwerbs... na hoffentlich machts auch Spaß!",
       flavorText: "",

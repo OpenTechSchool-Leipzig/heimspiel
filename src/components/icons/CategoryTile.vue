@@ -6,7 +6,7 @@
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g id="cat-1" v-if="catID === 1">
+    <g id="cat-1" v-if="isCategory('health')">
       <path
         d="M70.5343 0L0.137329 40.5899V121.907L70.5343 162.565L140.931 121.907V40.5899L70.5343 0Z"
         fill="#7DC4F9"
@@ -48,7 +48,7 @@
         fill="white"
       />
     </g>
-    <g id="cat-2" v-else-if="catID === 2">
+    <g id="cat-2" v-else-if="isCategory('livingtogether')">
       <path
         d="M70.5 0L141 40.718V122.085L70.5 162.803L0 122.085V40.718L70.5 0Z"
         fill="#9595F4"
@@ -72,7 +72,7 @@
         fill="white"
       />
     </g>
-    <g id="cat-3" v-else-if="catID === 3">
+    <g id="cat-3" v-else-if="isCategory('productivity')">
       <path
         d="M70.4313 0L0 40.6784V121.966L70.4313 162.645L140.931 121.966V40.6784L70.4313 0Z"
         fill="#F7A4D3"
@@ -87,7 +87,7 @@
         fill="white"
       />
     </g>
-    <g id="cat-4" v-else-if="catID === 4">
+    <g id="cat-4" v-else-if="isCategory('chores')">
       <path
         d="M70.5 0L0 40.7181V122.085L70.5 162.803L141 122.085V40.7181L70.5 0Z"
         fill="#78EFEC"
@@ -129,7 +129,7 @@
         fill="white"
       />
     </g>
-    <g id="cat-5" v-else-if="catID === 5">
+    <g id="cat-5" v-else-if="isCategory('solidarity')">
       <path
         d="M70.5 0L0 40.718V122.085L70.5 162.803L141 122.085V40.718L70.5 0Z"
         fill="#A4F498"
@@ -218,7 +218,7 @@
       />
     </g>
 
-    <g id="cat-6" v-else-if="catID === 6">
+    <g id="cat-6" v-else-if="isCategory('activity')">
       <path
         d="M70.5 0L0 40.718V122.085L70.5 162.803L141 122.085V40.718L70.5 0Z"
         fill="#F9B88C"
@@ -247,10 +247,15 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import { Categories } from "@/types";
 
 @Component
 export default class CategoryTile extends Vue {
-  @Prop() private catID!: number;
+  @Prop() private category!: Categories;
   @Prop() private isSmall!: boolean | null;
+
+  isCategory(name: Categories) {
+    return Categories[this.category] === Categories[name];
+  }
 }
 </script>

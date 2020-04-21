@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Quest, QuestFilter } from "@/types";
+import { Categories, Quest, QuestFilter } from "@/types";
 import QuestCard from "./QuestCard.vue";
 import FilterBar from "./FilterBar.vue";
 import { QuestsModule } from "@/store/modules/quests";
@@ -56,7 +56,8 @@ export default class QuestList extends Vue {
       return this.openQuests.filter(
         q =>
           q.text.toLowerCase().match(this.filter.searchString.toLowerCase()) &&
-          (!this.filter.category || q.category.id === this.filter.category)
+          (!this.filter.category ||
+            Categories[q.category] === this.filter.category)
       );
     }
     return [];

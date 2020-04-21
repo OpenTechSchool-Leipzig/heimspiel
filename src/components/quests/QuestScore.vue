@@ -3,7 +3,7 @@
     <span class="score">{{ score }}</span>
     <svg
       class="score-icon"
-      :class="'category-' + catID"
+      :class="'category-' + categoryId"
       viewBox="0 0 34 29"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -14,11 +14,16 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import { Categories } from "@/types";
 
 @Component
 export default class QuestScore extends Vue {
   @Prop() private score!: number;
-  @Prop() private catID!: number;
+  @Prop() private category!: Categories;
+
+  get categoryId() {
+    return Categories[this.category];
+  }
 }
 </script>
 

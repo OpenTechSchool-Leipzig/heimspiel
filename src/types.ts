@@ -1,29 +1,23 @@
 export enum Categories {
-  Gesundheit = 1,
-  Zusammenleben = 2,
-  Produktivität = 3,
-  Haushalt = 4,
-  Zusammenhalt = 5,
-  Beschäftigung = 6,
+  health = 1,
+  livingtogether = 2,
+  productivity = 3,
+  chores = 4,
+  solidarity = 5,
+  activity = 6,
 }
 
-export type CategorieTitles = keyof typeof Categories;
+export type CategoriesNames = keyof typeof Categories;
 
 export type CatItem = {
   name: string;
   id: number;
 };
 
-export type QuestCategory = {
-  id: number;
-  title: CategorieTitles;
-  image?: string;
-};
-
 export type Quest = {
   id: number;
   title: string;
-  category: QuestCategory;
+  category: CategoriesNames;
   text: string;
   flavorText: string;
   score: number;
@@ -37,7 +31,7 @@ export type QuestFilter = {
 
 export type PlayerAttribute = {
   name: string;
-  url: string;
+  id: string;
 };
 
 export type Player = {
@@ -49,7 +43,6 @@ export type Team = {
   id: string;
   name: string;
   token: string;
-  url: string;
 };
 
 export type TilePosition = "top-right" | "bottom-left";

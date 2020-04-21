@@ -5,10 +5,10 @@
     <p v-if="quest.flavorText" class="flavor-text">{{ quest.flavorText }}</p>
     <img :src="quest.image" alt="" class="img" />
     <span class="icons">
-      <QuestScore :catID="quest.category.id" :score="quest.score"></QuestScore>
+      <QuestScore :category="quest.category" :score="quest.score"></QuestScore>
     </span>
     <span class="symbol">
-      <CategoryTile :catID="quest.category.id" :isSmall="true" />
+      <CategoryTile :category="quest.category" :isSmall="true" />
     </span>
     <!-- TODO: sechseck clippath sollte wahrscheinlich verschoben werden! -->
     <svg height="0" width="0">
