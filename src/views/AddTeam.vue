@@ -14,7 +14,7 @@
             <br />
             <br />
 
-            <add-member v-model="teamMembers" />
+            <add-player v-model="teamMembers" />
 
             <br />
             <br />
