@@ -1,12 +1,15 @@
 <template>
   <div>
     <FilterBar v-model="filter"></FilterBar>
-    <ul class="columns is-multiline">
+    <p class="quests-count">
+      Du hast {{ selectedQuestsCount }} Quests ausgewählt
+    </p>
+    <ul class="columns is-centered is-multiline">
       <QuestCard
         v-for="quest in filteredQuest"
         :quest="quest"
         :key="quest.id"
-        @click="selectQuest(quest)"
+        @click="onClick"
       />
     </ul>
   </div>
@@ -43,17 +46,9 @@ export default class QuestList extends Vue {
     return QuestsModule.quests;
   }
 
-  get selectedQuestIds(): Array<number> {
-    return QuestsModule.selectedQuests.map(q => q.id);
-  }
-
-  get openQuests(): Array<Quest> {
-    return this.quests.filter(q => !this.selectedQuestIds.includes(q.id));
-  }
-
   get filteredQuest(): Array<Quest> {
-    if (this.openQuests && this.openQuests.length > 0) {
-      return this.openQuests.filter(
+    if (this.quests && this.quests.length > 0) {
+      return this.quests.filter(
         q =>
           q.text.toLowerCase().match(this.filter.searchString.toLowerCase()) &&
           (!this.filter.category ||
@@ -63,10 +58,26 @@ export default class QuestList extends Vue {
     return [];
   }
 
-  selectQuest(quest: Quest) {
-    QuestsModule.addSelectedQuest(quest);
+  get selectedQuestIds(): Array<number> {
+    return QuestsModule.selectedQuests.map(q => q.id);
+  }
+
+  get selectedQuestsCount(): number {
+    return this.selectedQuestIds.length;
+  }
+
+  onClick(quest: Quest) {
+    if (this.selectedQuestIds.includes(quest.id)) {
+      QuestsModule.removeSelectedQuest(quest.id);
+    } else {
+      QuestsModule.addSelectedQuest(quest);
+    }
   }
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.quests-count {
+  margin-bottom: 4rem;
+}
+</style>

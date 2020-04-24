@@ -1,5 +1,5 @@
 <template>
-  <li class="quest-card" @click="$emit('click')">
+  <li class="quest-card" @click="$emit('click', quest)">
     <h3 class="headline">{{ quest.title }}</h3>
     <p class="text">{{ quest.text }}</p>
     <p v-if="quest.flavorText" class="flavor-text">{{ quest.flavorText }}</p>
@@ -8,7 +8,11 @@
       <QuestScore :category="quest.category" :score="quest.score"></QuestScore>
     </span>
     <span class="symbol">
-      <CategoryTile :category="quest.category" :isSmall="true" />
+      <CategoryTile
+        :category="quest.category"
+        :isSmall="true"
+        :isSelected="isSelected"
+      />
     </span>
     <!-- TODO: sechseck clippath sollte wahrscheinlich verschoben werden! -->
     <svg height="0" width="0">
@@ -29,6 +33,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { Quest } from "@/types";
 import CategoryTile from "@/components/icons/CategoryTile.vue";
 import QuestScore from "@/components/quests/QuestScore.vue";
+import { QuestsModule } from "@/store/modules/quests";
 
 @Component({
   components: {
@@ -37,10 +42,18 @@ import QuestScore from "@/components/quests/QuestScore.vue";
   }
 })
 export default class QuestCard extends Vue {
-  // TODO: fetch quests from API
   @Prop() private quest!: Quest;
+
   get iconClass(): string {
     return `symbol-${this.quest.category}`;
+  }
+
+  get selectedQuestIds(): Array<number> {
+    return QuestsModule.selectedQuests.map(q => q.id);
+  }
+
+  get isSelected() {
+    return this.selectedQuestIds.includes(this.quest.id);
   }
 }
 </script>
@@ -53,8 +66,9 @@ export default class QuestCard extends Vue {
   color: $black;
   padding: 2rem 1.4rem 0.7rem 0.7rem;
   text-align: left;
-  margin-bottom: 1rem;
+  margin-bottom: 4rem;
   margin-right: 1rem;
+  margin-top: 1.5rem;
   position: relative;
   @include shadow-main;
   transition: all 0.3s ease-in-out;
@@ -62,6 +76,7 @@ export default class QuestCard extends Vue {
     transform: scale(1.2);
     @include shadow-hover;
     z-index: 100;
+    cursor: pointer;
   }
 }
 .headline {

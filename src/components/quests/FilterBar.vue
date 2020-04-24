@@ -1,18 +1,20 @@
 <template>
-  <div class="filter-body">
-    <div class="level is-mobile">
-      <div class="level-left">
+  <div class="filter-bar">
+    <div class="columns">
+      <div class="column is-offset-one-quarter is-one-quarter">
         <div class="control" v-if="typeof value.searchString != 'undefined'">
           <input
-            class="input"
+            class="input is-inverted"
             type="text"
             v-model="value.searchString"
             placeholder="Suche"
           />
         </div>
+      </div>
+      <div class="column is-one-quarter">
         <div v-if="typeof value.category != 'undefined'" class="field">
-          <div class="control">
-            <div class="select">
+          <div class="control is-pulled-right">
+            <div class="select is-inverted">
               <select v-model="value.category">
                 <option selected disabled value>Kategorie</option>
                 <option value>Alle Anzeigen</option>
@@ -30,7 +32,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import { QuestFilter, CatItem } from "../../types";
+import { QuestFilter, CatItem } from "@/types";
 import { getCatArray } from "@/utility/categories";
 
 @Component
@@ -49,7 +51,7 @@ export default class FilterBar extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.filter-body {
-  padding: 0.75rem;
+.filter-bar {
+  padding-bottom: 3rem;
 }
 </style>

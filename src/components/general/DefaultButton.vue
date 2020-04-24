@@ -16,7 +16,7 @@ export default class DefaultButton extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 // adjust top padding to center font
 .button {
   padding-top: 0.6em;

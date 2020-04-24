@@ -242,6 +242,23 @@
         fill="white"
       />
     </g>
+
+    <g
+      id="selected"
+      v-if="isSelected"
+      stroke="none"
+      stroke-width="1"
+      fill="none"
+      fill-rule="evenodd"
+      fill-opacity="0.8"
+    >
+      <g id="tile" fill="#FFFFFF" fill-rule="nonzero">
+        <path
+          d="M70.5,0 L0,40.718 L0,122.085 L70.5,163 L141,122.085 C141,116.345486 141,89.2231523 141,40.718 L70.5,0 Z M124.584131,67.1967213 L71.2014518,120.557377 C68.9054226,122.852459 65.8057832,124 62.8209452,124 C59.7213057,124 56.7364677,122.852459 54.4404385,120.557377 L23.4440438,89.8032787 C18.8519854,85.2131148 18.8519854,77.6393443 23.4440438,73.0491803 L23.4440438,73.0491803 C28.0361023,68.4590164 35.6129988,68.4590164 40.2050572,73.0491803 L62.5913422,95.4262295 L107.593515,50.442623 C112.185574,45.852459 119.76247,45.852459 124.354529,50.442623 C129.17619,55.0327869 129.17619,62.6065574 124.584131,67.1967213 Z"
+          id="Shape"
+        ></path>
+      </g>
+    </g>
   </svg>
 </template>
 
@@ -253,6 +270,7 @@ import { Categories } from "@/types";
 export default class CategoryTile extends Vue {
   @Prop() private category!: Categories;
   @Prop() private isSmall!: boolean | null;
+  @Prop() private isSelected!: boolean | null;
 
   isCategory(name: Categories) {
     return Categories[this.category] === Categories[name];
